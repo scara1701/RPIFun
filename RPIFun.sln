@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPIFun.API", "RPIFun.API\RPIFun.API.csproj", "{E496A749-6E3B-4049-8C04-3C40006C65EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPIFun.Client", "RPIFun.Client\RPIFun.Client.csproj", "{021BB809-A434-4618-BC0B-F033E0F150EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPIFun.WinClient", "RPIFun.WinClient\RPIFun.WinClient.csproj", "{FAA9892E-46F7-4C80-9853-2245EE3CB660}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPIFun.Core", "RPIFun.Core\RPIFun.Core.csproj", "{BF65D535-C40F-42E1-8571-E4CC40F42CA2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E496A749-6E3B-4049-8C04-3C40006C65EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E496A749-6E3B-4049-8C04-3C40006C65EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E496A749-6E3B-4049-8C04-3C40006C65EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E496A749-6E3B-4049-8C04-3C40006C65EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{021BB809-A434-4618-BC0B-F033E0F150EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{021BB809-A434-4618-BC0B-F033E0F150EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{021BB809-A434-4618-BC0B-F033E0F150EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{021BB809-A434-4618-BC0B-F033E0F150EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAA9892E-46F7-4C80-9853-2245EE3CB660}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAA9892E-46F7-4C80-9853-2245EE3CB660}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAA9892E-46F7-4C80-9853-2245EE3CB660}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAA9892E-46F7-4C80-9853-2245EE3CB660}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF65D535-C40F-42E1-8571-E4CC40F42CA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF65D535-C40F-42E1-8571-E4CC40F42CA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF65D535-C40F-42E1-8571-E4CC40F42CA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF65D535-C40F-42E1-8571-E4CC40F42CA2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7F226168-88E6-4FB8-9386-6C373766D5F5}
+	EndGlobalSection
+EndGlobal
