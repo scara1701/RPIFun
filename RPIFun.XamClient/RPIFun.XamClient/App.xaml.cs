@@ -9,7 +9,6 @@ namespace RPIFun.XamClient
         public App()
         {
             InitializeComponent();
-
             MainPage = new MainPage();
         }
 

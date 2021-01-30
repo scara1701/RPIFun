@@ -1,24 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:conv="clr-namespace:RPIFun.XamClient.Converters"
              x:Class="RPIFun.XamClient.MainPage">
+    <ContentPage.Resources>
+        <conv:LEDStatusColourConverter x:Key="LEDStatusColourConverter" />
+        <conv:LEDStatusTextConverter x:Key="LEDStatusTextConverter" />
+        <conv:BusyStatusConverter x:Key="BusyStatusConverter" />
+    </ContentPage.Resources>
 
-    <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-        </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+    <StackLayout IsEnabled="{Binding IsBusy, Converter={StaticResource BusyStatusConverter}}">
+        <Entry Placeholder="Serveraddress" Text="{Binding ServerAddress}" />
+        <Entry Placeholder="ServerPort" Text="{Binding ServerPort}"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+        <Ellipse Grid.Column="1"
+                        HeightRequest="100"
+                 
+                         x:Name="Led"
+                         Margin="12"
+                         Fill="{Binding LEDStatus, Converter={StaticResource LEDStatusColourConverter}}" 
+                 />
+        </Grid>
+        <Label Text="{Binding LEDStatus, Converter={StaticResource LEDStatusTextConverter}}" />
+        <Button Text="Get LED status" Command="{Binding GetLEDStatusCommand}"  IsEnabled="{Binding ButtonsEnabled}"/>
+        <Button Text="Hit LED switch" Command="{Binding SwitchLEDCommand}"  IsEnabled="{Binding ButtonsEnabled}" />
+        <Button Text="Get Environment" Command="{Binding GetEnvironmentCommand}"  IsEnabled="{Binding ButtonsEnabled}" />
+        <Grid Grid.Row="6" Grid.Column="3" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Text="Temperature:" />
+            <Label Text="Humidity:" Grid.Row="1"/>
+            <Label Text="Pressure:" Grid.Row="2"/>
+            <Label Text="{Binding Temperature}" Grid.Column="1" />
+            <Label Text="{Binding Humidity}" Grid.Row="1" Grid.Column="1"/>
+            <Label Text="{Binding Pressure}" Grid.Row="2" Grid.Column="1"/>
+        </Grid>
+        <Label Text="{Binding StatusMessage}" />
     </StackLayout>
 
 </ContentPage>
