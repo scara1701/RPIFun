@@ -28,6 +28,8 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition />
         </Grid.RowDefinitions>
         <Label Content="Server IP" Grid.Row="1" Grid.Column="1" Margin="0,1,0,1" />
@@ -36,12 +38,30 @@
         <TextBox Grid.Row="2" Grid.Column="2" Margin="0,1,0,1" Text="{Binding ServerPort, UpdateSourceTrigger=PropertyChanged}"/>
         <Button Content="Get LED status" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,1,0,1" IsEnabled="{Binding ButtonsEnabled}" Command="{Binding GetLEDStatusCommand}" Height="40"/>
         <Button Content="Hit LED switch" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,1,0,1" IsEnabled="{Binding ButtonsEnabled}" Command="{Binding SwitchLEDCommand}" Height="40"/>
+        <Button Content="Get Environment" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,1,0,1" IsEnabled="{Binding ButtonsEnabled}" Command="{Binding GetEnvironmentCommand}" Height="40"/>
         <Ellipse Width="128" Height="128"
                          x:Name="Led"
                          Margin="12"
                          Fill="{Binding LEDStatus, Converter={StaticResource LEDStatusColourConverter}}" Grid.Row="1" Grid.Column="3" Grid.RowSpan="4"
                  />
         <TextBlock Text="{Binding LEDStatus, Converter={StaticResource LEDStatusTextConverter}}" Grid.Row="5" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32" FontWeight="Bold"/>
-        <TextBlock Text="{Binding StatusMessage}" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+        <Grid Grid.Row="6" Grid.Column="3" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Content="Temperature:" />
+            <Label Content="Humidity:" Grid.Row="1"/>
+            <Label Content="Pressure:" Grid.Row="2"/>
+            <Label Content="{Binding Temperature}" Grid.Column="1" />
+            <Label Content="{Binding Humidity}" Grid.Row="1" Grid.Column="1"/>
+            <Label Content="{Binding Pressure}" Grid.Row="2" Grid.Column="1"/>
+        </Grid>
+        <TextBlock Text="{Binding StatusMessage}" Grid.Row="8" Grid.Column="1"  Grid.ColumnSpan="3" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
     </Grid>
 </Window>

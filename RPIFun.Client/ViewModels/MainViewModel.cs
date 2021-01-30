@@ -1,5 +1,6 @@
 ﻿using Microsoft.Toolkit.Mvvm.Input;
 using RPIFun.Client.Services;
+using RPIFun.Core;
 using System;
 using System.Windows.Input;
 
@@ -7,8 +8,37 @@ namespace RPIFun.Client.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        private bool lEDStatus;
+        private string temperature;
+        public string Temperature
+        {
+            get => temperature;
+            set
+            {
+                SetProperty(ref temperature, value);
+            }
+        }
 
+        private string pressure;
+        public string Pressure
+        {
+            get => pressure;
+            set
+            {
+                SetProperty(ref pressure, value);
+            }
+        }
+
+        private string humidity;
+        public string Humidity
+        {
+            get => humidity;
+            set
+            {
+                SetProperty(ref humidity, value);
+            }
+        }
+
+        private bool lEDStatus;
         public bool LEDStatus
         {
             get => lEDStatus;
@@ -23,7 +53,8 @@ namespace RPIFun.Client.ViewModels
             get => buttonsEnabled;
             set
             {
-                SetProperty(ref buttonsEnabled, value);            }
+                SetProperty(ref buttonsEnabled, value);
+            }
         }
 
         private string serverAddress;
@@ -41,7 +72,8 @@ namespace RPIFun.Client.ViewModels
         public string ServerPort
         {
             get => serverPort;
-            set { 
+            set
+            {
                 SetProperty(ref serverPort, value);
                 SetButtons();
             }
@@ -63,10 +95,40 @@ namespace RPIFun.Client.ViewModels
         public ICommand GetLEDStatusCommand { get; }
         public ICommand SwitchLEDCommand { get; }
 
+        public ICommand GetEnvironmentCommand { get; }
+
         public MainViewModel()
         {
             GetLEDStatusCommand = new RelayCommand(GetLEDStatus);
             SwitchLEDCommand = new RelayCommand(SwitchLED);
+            GetEnvironmentCommand = new RelayCommand(GetEnvironment);
+        }
+
+        private async void GetEnvironment()
+        {
+            IsBusy = true;
+            StatusMessage = "Getting Environment, please wait...";
+            try
+            {
+                EnvService envService = new EnvService(ServerAddress, ServerPort);
+                EnvResult envResult = await envService.getEnvironment();
+                StatusMessage = "Environment succesfully retrieved.";
+                //Temperature = envResult.Temperature.ToString();
+                //Humidity = envResult.Humidity.ToString();
+                //Pressure = envResult.Pressure.ToString();
+
+                Temperature = String.Format("{0:0.00}\u00b0C", envResult.Temperature);
+                Humidity = String.Format("{0:0.00} %", envResult.Humidity);
+                Pressure = String.Format("{0:0.00} hPa", envResult.Pressure);
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = ex.Message;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         private async void SwitchLED()
@@ -81,7 +143,8 @@ namespace RPIFun.Client.ViewModels
                 {
                     StatusMessage = "LED was turned on.";
                 }
-                else{
+                else
+                {
                     StatusMessage = "LED was turned off.";
                 }
             }

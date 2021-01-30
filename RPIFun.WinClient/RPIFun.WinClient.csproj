@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RPIFun.Client\RPIFun.Client.csproj" />
+    <ProjectReference Include="..\RPIFun.Core\RPIFun.Core.csproj" />
   </ItemGroup>
 
 </Project>

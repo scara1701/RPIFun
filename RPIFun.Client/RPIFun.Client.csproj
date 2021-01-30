@@ -13,4 +13,8 @@
     <Folder Include="Models\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RPIFun.Core\RPIFun.Core.csproj" />
+  </ItemGroup>
+
 </Project>
